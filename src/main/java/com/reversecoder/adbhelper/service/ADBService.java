@@ -14,24 +14,25 @@ import java.util.Map;
 /**
  * @author Md. Rashsadul Alam
  *
- * Usage:
- * =====
-    ADBService adbService = new ADBServiceImpl();
-
-    List<String> udids = adbService.getConnectedDevicesUdid();
-
-    byte[] rawScreenshot = adbService.getScreenshot("deviceUdid", ADBScreenshotType.RAW);
-
-    Map configuration = adbService.getPropertiesForDevice("deviceUdid");
-
-    byte[] file = adbService.pullFile(deviceUdid, new ADBRemoteFile("/sdcard/testFile.txt"));
-
-    adbService.pushFile(deviceUdid, new File("pom.xml"), new ADBRemoteFile("/sdcard/pom.xml"));
-
-    adbService.sendKeys(deviceUdid, "testSendKeys via ADB");
-
-    List<ADBProcess> list = adbService.getProcessList(deviceUdid);
  */
+
+/*  Usage:
+  =====
+   ADBService adbService = new ADBServiceImpl();
+
+   List<String> udids = adbService.getConnectedDevicesUdid();
+
+   byte[] rawScreenshot = adbService.getScreenshot("deviceUdid", ADBScreenshotType.RAW);
+
+   Map configuration = adbService.getPropertiesForDevice("deviceUdid");
+
+   byte[] file = adbService.pullFile(deviceUdid, new ADBRemoteFile("/sdcard/testFile.txt"));
+
+   adbService.pushFile(deviceUdid, new File("pom.xml"), new ADBRemoteFile("/sdcard/pom.xml"));
+
+   adbService.sendKeys(deviceUdid, "testSendKeys via ADB");
+
+   List<ADBProcess> list = adbService.getProcessList(deviceUdid);*/
 public interface ADBService {
 
     void executeShellCommand(String udid, String command) throws Exception;
