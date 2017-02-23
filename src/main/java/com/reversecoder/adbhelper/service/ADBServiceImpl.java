@@ -278,6 +278,18 @@ public class ADBServiceImpl implements ADBService {
         adbConnection.close();
     }
 
+    @Override
+    public void enableGPS(String udid, boolean doEnable) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        if(doEnable){
+            adbDevice.executeShell(ADBShellCommands.ENABLE_GPS);
+        } else {
+            adbDevice.executeShell(ADBShellCommands.DISABLE_GPS);
+        }
+        adbConnection.close();
+    }
+
     public void resetBatteryState(String udid) throws Exception {
         ADBConnection adbConnection = createConnection();
         ADBDevice adbDevice = adbConnection.getDevice(udid);

@@ -30,6 +30,8 @@ public class ADBShellCommands {
     public static final String TOGGLE_DISPLAY_POWER="input keyevent 26";
     public static final String SWIPE_TO_UNLOCK="input swipe 200 700 200 0";
     public static final String ON_DISLPLAY_POWER_AND_SWIPE_TO_UNLOCK="\"input keyevent 26; input swipe 200 700 200 0;\"";
+    public static final String ENABLE_GPS = "settings put secure location_providers_allowed +gps";
+    public static final String DISABLE_GPS = "settings put secure location_providers_allowed -gps";
 
     public static final String setBatteryStatus(BATTERY_STATUS batteryStatus){
         String bStatus = "dumpsys battery set status " + batteryStatus.getBatteryStatusValue();

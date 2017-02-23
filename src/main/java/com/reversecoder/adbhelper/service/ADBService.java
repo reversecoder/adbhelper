@@ -76,4 +76,6 @@ public interface ADBService {
     void doDisplayOnAndUnlock(String udid) throws Exception;
 
     void swipeToUnlock(String udid) throws Exception;
+
+    void enableGPS(String udid, boolean doEnable) throws Exception;
 }
