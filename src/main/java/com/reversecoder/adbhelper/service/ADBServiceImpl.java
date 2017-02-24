@@ -290,6 +290,56 @@ public class ADBServiceImpl implements ADBService {
         adbConnection.close();
     }
 
+    @Override
+    public void clearAndForceStop(String udid, String packageName) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        adbDevice.executeShell(ADBShellCommands.getClearAndForceStop(packageName));
+        adbConnection.close();
+    }
+
+    @Override
+    public void forceStop(String udid, String packageName) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        adbDevice.executeShell(ADBShellCommands.getForceStop(packageName));
+        adbConnection.close();
+    }
+
+    @Override
+    public void launchApplication(String udid, String packageName) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        adbDevice.executeShell(ADBShellCommands.getLaunchApplication(packageName));
+        adbConnection.close();
+    }
+
+    @Override
+    public void launchActivity(String udid, String packageName, String activityNameWithFullPackage) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        adbDevice.executeShell(ADBShellCommands.getLaunchActivity(packageName, activityNameWithFullPackage));
+        adbConnection.close();
+    }
+
+    @Override
+    public String getOsVersion(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String osVersion = adbDevice.executeShell(ADBShellCommands.OS_VERSION);
+        adbConnection.close();
+        return osVersion;
+    }
+
+    @Override
+    public String getApiLevel(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String apiLevel = adbDevice.executeShell(ADBShellCommands.API_LEVEL);
+        adbConnection.close();
+        return apiLevel;
+    }
+
     public void resetBatteryState(String udid) throws Exception {
         ADBConnection adbConnection = createConnection();
         ADBDevice adbDevice = adbConnection.getDevice(udid);

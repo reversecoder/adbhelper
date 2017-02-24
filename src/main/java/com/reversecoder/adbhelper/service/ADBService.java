@@ -78,4 +78,16 @@ public interface ADBService {
     void swipeToUnlock(String udid) throws Exception;
 
     void enableGPS(String udid, boolean doEnable) throws Exception;
+
+    void clearAndForceStop(String udid, String packageName) throws Exception;
+
+    void forceStop(String udid, String packageName) throws Exception;
+
+    void launchApplication(String udid, String packageName) throws Exception;
+
+    void launchActivity(String udid, String packageName, String activityNameWithFullPackage) throws Exception;
+
+    String getOsVersion(String udid) throws Exception;
+
+    String getApiLevel(String udid) throws Exception;
 }

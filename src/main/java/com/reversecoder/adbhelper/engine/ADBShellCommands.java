@@ -32,6 +32,8 @@ public class ADBShellCommands {
     public static final String ON_DISLPLAY_POWER_AND_SWIPE_TO_UNLOCK="\"input keyevent 26; input swipe 200 700 200 0;\"";
     public static final String ENABLE_GPS = "settings put secure location_providers_allowed +gps";
     public static final String DISABLE_GPS = "settings put secure location_providers_allowed -gps";
+    public static final String OS_VERSION = "getprop ro.build.version.release";
+    public static final String API_LEVEL = "getprop ro.build.version.sdk";
 
     public static final String setBatteryStatus(BATTERY_STATUS batteryStatus){
         String bStatus = "dumpsys battery set status " + batteryStatus.getBatteryStatusValue();
@@ -41,5 +43,27 @@ public class ADBShellCommands {
     public static final String setBatteryLevel(int batteryLevel){
         String bLevel = "dumpsys battery set level " + batteryLevel;
         return bLevel;
+    }
+
+    public static final String getClearAndForceStop(String packageName) {
+        String clearAndForceStop = "pm clear " + packageName;
+        return clearAndForceStop;
+    }
+
+    public static final String getForceStop(String packageName) {
+        String clearAndForceStop = "am force-stop " + packageName;
+        return clearAndForceStop;
+    }
+
+    public static final String getLaunchApplication(String packageName) {
+        String launchApplication = "monkey -p " + packageName
+                + " -c android.intent.category.LAUNCHER 1";
+        return launchApplication;
+    }
+
+    public static final String getLaunchActivity(String packageName,
+            String activityNameWithFullPackage) {
+        String launchActivity = "am start -n " + packageName + "/" + activityNameWithFullPackage;
+        return launchActivity;
     }
 }
