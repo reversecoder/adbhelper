@@ -347,7 +347,7 @@ public class ADBServiceImpl implements ADBService {
         adbConnection.close();
     }
 
-    private ADBConnection createConnection() throws Exception {
+    public ADBConnection createConnection() throws Exception {
         ADBConnection adbConnection;
         try {
             adbConnection = new ADBConnection();
