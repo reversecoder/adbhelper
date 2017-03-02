@@ -2,11 +2,37 @@ This project is used for executing adb command from java project or any android 
 
   Usage:
   ======
-  ADBServiceImpl.getInstance().enableGPS(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0), false);
+        List<String> udids = ADBServiceImpl.getInstance().getConnectedDevicesUdid();
+
+        byte[] rawScreenshot = ADBServiceImpl.getInstance().getScreenshot("deviceUdid",
+                ADBScreenshotType.RAW);
+
+        Map configuration = ADBServiceImpl.getInstance().getPropertiesForDevice("deviceUdid");
+
+        byte[] file = ADBServiceImpl.getInstance().pullFile(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0),
+                new ADBRemoteFile("/sdcard/testFile.txt"));
+
+        ADBServiceImpl.getInstance().pushFile(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0), new File("pom.xml"),
+                new ADBRemoteFile("/sdcard/pom.xml"));
+
+        ADBServiceImpl.getInstance().sendKeys(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0),
+                "testSendKeys via ADB");
+
+        ADBServiceImpl.getInstance().sendKeys(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0),
+                "testSendKeys via ADB");
+
+        List<ADBProcess> list = ADBServiceImpl.getInstance()
+                .getProcessList(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
+        ADBServiceImpl.getInstance()
+                .enableGPS(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0), false);
 
   Adding procedure of this jar into different projects using maven(into pom file):
   ================================================================================
-
   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
       ...................................

@@ -34,6 +34,11 @@ public class ADBShellCommands {
     public static final String DISABLE_GPS = "settings put secure location_providers_allowed -gps";
     public static final String OS_VERSION = "getprop ro.build.version.release";
     public static final String API_LEVEL = "getprop ro.build.version.sdk";
+    public static final String IS_WIFI_ENABLE = "settings get global wifi_on";
+    public static final String IS_BLUETOOTH_ENABLE = "settings get global bluetooth_on";
+    public static final String IS_AIRPLANE_MODE_ENABLE = "settings get global airplane_mode_on";
+    public static final String IS_NETWORK_PROVIDER_ALLOWED = "settings get secure location_providers_allowed";
+    public static final String IS_GPS_PROVIDER_ALLOWED = "settings get secure location_providers_allowed";
 
     public static final String setBatteryStatus(BATTERY_STATUS batteryStatus){
         String bStatus = "dumpsys battery set status " + batteryStatus.getBatteryStatusValue();
