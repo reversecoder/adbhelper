@@ -31,6 +31,21 @@ This project is used for executing adb command from java project or any android 
         ADBServiceImpl.getInstance()
                 .enableGPS(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0), false);
 
+        ADBServiceImpl.getInstance()
+                .isWifiEnable(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
+        ADBServiceImpl.getInstance()
+                .isBlueToothEnable(ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
+        ADBServiceImpl.getInstance().isAirplaneModeEnable(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
+        ADBServiceImpl.getInstance().isNetworkProviderAllowed(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
+        ADBServiceImpl.getInstance().isGpsProviderAllowed(
+                ADBServiceImpl.getInstance().getConnectedDevicesUdid().get(0));
+
   Adding procedure of this jar into different projects using maven(into pom file):
   ================================================================================
   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
