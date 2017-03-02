@@ -346,7 +346,7 @@ public class ADBServiceImpl implements ADBService {
         ADBDevice adbDevice = adbConnection.getDevice(udid);
         String isWifi = adbDevice.executeShell(ADBShellCommands.IS_WIFI_ENABLE);
         adbConnection.close();
-        if(isWifi.equalsIgnoreCase("1")){
+        if(isWifi.contains("1")){
             return true;
         }
         return false;
@@ -358,7 +358,7 @@ public class ADBServiceImpl implements ADBService {
         ADBDevice adbDevice = adbConnection.getDevice(udid);
         String isBluetooth = adbDevice.executeShell(ADBShellCommands.IS_BLUETOOTH_ENABLE);
         adbConnection.close();
-        if(isBluetooth.equalsIgnoreCase("1")){
+        if(isBluetooth.contains("1")){
             return true;
         }
         return false;
@@ -370,7 +370,7 @@ public class ADBServiceImpl implements ADBService {
         ADBDevice adbDevice = adbConnection.getDevice(udid);
         String isAirplaneMode = adbDevice.executeShell(ADBShellCommands.IS_AIRPLANE_MODE_ENABLE);
         adbConnection.close();
-        if(isAirplaneMode.equalsIgnoreCase("1")){
+        if(isAirplaneMode.contains("1")){
             return true;
         }
         return false;
@@ -382,7 +382,7 @@ public class ADBServiceImpl implements ADBService {
         ADBDevice adbDevice = adbConnection.getDevice(udid);
         String isNetworkProvider = adbDevice.executeShell(ADBShellCommands.IS_NETWORK_PROVIDER_ALLOWED);
         adbConnection.close();
-        if(isNetworkProvider.equalsIgnoreCase("network")){
+        if(isNetworkProvider.contains("network")){
             return true;
         }
         return false;
@@ -394,7 +394,7 @@ public class ADBServiceImpl implements ADBService {
         ADBDevice adbDevice = adbConnection.getDevice(udid);
         String isGpsProvider = adbDevice.executeShell(ADBShellCommands.IS_GPS_PROVIDER_ALLOWED);
         adbConnection.close();
-        if(isGpsProvider.equalsIgnoreCase("gps")){
+        if(isGpsProvider.contains("gps")){
             return true;
         }
         return false;
