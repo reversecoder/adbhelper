@@ -83,4 +83,6 @@ public interface ADBService {
     boolean isNetworkProviderAllowed(String udid) throws Exception;
 
     boolean isGpsProviderAllowed(String udid) throws Exception;
+
+    boolean isSpecificServiceRunning(String udid, String packageName, String serviceNameWithFullPackage) throws Exception;
 }

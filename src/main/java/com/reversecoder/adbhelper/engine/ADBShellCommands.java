@@ -71,4 +71,10 @@ public class ADBShellCommands {
         String launchActivity = "am start -n " + packageName + "/" + activityNameWithFullPackage;
         return launchActivity;
     }
+
+    public static final String getSpecificService(String packageName,
+            String serviceNameWithFullPackage) {
+        String getSpecificService = "dumpsys activity services " + packageName + "/" + serviceNameWithFullPackage;
+        return getSpecificService;
+    }
 }

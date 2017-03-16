@@ -7,6 +7,7 @@ import com.reversecoder.adbhelper.data.ADBBatteryState;
 import com.reversecoder.adbhelper.data.ADBBatteryState.BATTERY_HEALTH;
 import com.reversecoder.adbhelper.data.ADBBatteryState.BATTERY_STATUS;
 import com.reversecoder.adbhelper.data.ADBDisplayPowerState;
+import com.reversecoder.adbhelper.data.ADBRunningServiceInfo;
 
 /**
  * @author Md. Rashsadul Alam
@@ -61,7 +62,7 @@ public class ShellOutputParsers {
     }
 
     public static ADBDisplayPowerState displayPowerStateParser(String input) {
-    	ADBDisplayPowerState adbDisplayPowerState = new ADBDisplayPowerState();
+        ADBDisplayPowerState adbDisplayPowerState = new ADBDisplayPowerState();
         List<String> lines = Arrays.asList(input.split("\r\n"));
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
@@ -75,5 +76,39 @@ public class ShellOutputParsers {
         }
 
         return adbDisplayPowerState;
+    }
+
+    public static ADBRunningServiceInfo getRunningServiceInfo(String input) {
+        ADBRunningServiceInfo mRunningService = new ADBRunningServiceInfo();
+        List<String> lines = Arrays.asList(input.split("\r\n"));
+        for (int i = 2; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.contains("intent=")) {
+                mRunningService.setIntent(line.split("ent=")[1]);
+            }
+
+            if (line.contains("packageName=")) {
+                mRunningService.setPackageName(line.split("=")[1]);
+            }
+
+            if (line.contains("processName=")) {
+                mRunningService.setProcessName(line.split("=")[1]);
+            }
+
+            if (line.contains("baseDir=")) {
+                mRunningService.setBaseDir(line.split("=")[1]);
+            }
+
+            if (line.contains("dataDir=")) {
+                mRunningService.setDataDir(line.split("=")[1]);
+            }
+
+            if (line.contains("app=")) {
+                mRunningService.setApp(line.split("=")[1]);
+            }
+
+        }
+
+        return mRunningService;
     }
 }

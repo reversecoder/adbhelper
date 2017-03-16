@@ -5,6 +5,7 @@ import com.reversecoder.adbhelper.data.ADBDisplayOrientation;
 import com.reversecoder.adbhelper.data.ADBDisplayPowerState;
 import com.reversecoder.adbhelper.data.ADBProcess;
 import com.reversecoder.adbhelper.data.ADBRemoteFile;
+import com.reversecoder.adbhelper.data.ADBRunningServiceInfo;
 import com.reversecoder.adbhelper.data.ADBScreenshotType;
 import com.reversecoder.adbhelper.data.ADBBatteryState.BATTERY_STATUS;
 import com.reversecoder.adbhelper.engine.*;
@@ -395,6 +396,19 @@ public class ADBServiceImpl implements ADBService {
         String isGpsProvider = adbDevice.executeShell(ADBShellCommands.IS_GPS_PROVIDER_ALLOWED);
         adbConnection.close();
         if(isGpsProvider.contains("gps")){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isSpecificServiceRunning(String udid, String packageName, String serviceNameWithFullPackage) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String serviceInfo = adbDevice.executeShell(ADBShellCommands.getSpecificService(packageName, serviceNameWithFullPackage));
+        adbConnection.close();
+        ADBRunningServiceInfo mRunningService = ShellOutputParsers.getRunningServiceInfo(serviceInfo);
+        if(mRunningService.getApp() != null){
             return true;
         }
         return false;
