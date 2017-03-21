@@ -85,4 +85,8 @@ public interface ADBService {
     boolean isGpsProviderAllowed(String udid) throws Exception;
 
     boolean isSpecificServiceRunning(String udid, String packageName, String serviceNameWithFullPackage) throws Exception;
+
+    String getLocaleLanguage(String udid) throws Exception;
+
+    String getLocaleCountry(String udid) throws Exception;
 }

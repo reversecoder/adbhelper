@@ -111,4 +111,32 @@ public class ShellOutputParsers {
 
         return mRunningService;
     }
+
+    public static String getLocaleLanguageCode(String input) {
+        String localeLanguageCode = "";
+        List<String> lines = Arrays.asList(input.split("\r\n"));
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.contains("ro.product.locale.language")) {
+                String data = line.split(": ")[1];
+                localeLanguageCode = data.substring(1, data.length()-1);
+            }
+        }
+
+        return localeLanguageCode;
+    }
+
+    public static String getLocaleCountryCode(String input) {
+        String localeCountryCode = "";
+        List<String> lines = Arrays.asList(input.split("\r\n"));
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.contains("persist.sys.country")) {
+                String data = line.split(": ")[1];
+                localeCountryCode = data.substring(1, data.length()-1);
+            }
+        }
+
+        return localeCountryCode;
+    }
 }

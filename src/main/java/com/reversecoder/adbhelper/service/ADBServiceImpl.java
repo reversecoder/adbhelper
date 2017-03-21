@@ -414,6 +414,26 @@ public class ADBServiceImpl implements ADBService {
         return false;
     }
 
+    @Override
+    public String getLocaleLanguage(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String localeLanguage = adbDevice.executeShell(ADBShellCommands.LOCALE_LANGUAGE);
+        String localeLanguageCode = ShellOutputParsers.getLocaleLanguageCode(localeLanguage);
+        adbConnection.close();
+        return localeLanguageCode;
+    }
+
+    @Override
+    public String getLocaleCountry(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String localeCountry = adbDevice.executeShell(ADBShellCommands.LOCALE_COUNTRY);
+        String localeCountryCode = ShellOutputParsers.getLocaleCountryCode(localeCountry);
+        adbConnection.close();
+        return localeCountryCode;
+    }
+
     public void resetBatteryState(String udid) throws Exception {
         ADBConnection adbConnection = createConnection();
         ADBDevice adbDevice = adbConnection.getDevice(udid);

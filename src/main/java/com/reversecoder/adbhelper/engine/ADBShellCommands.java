@@ -39,6 +39,14 @@ public class ADBShellCommands {
     public static final String IS_AIRPLANE_MODE_ENABLE = "settings get global airplane_mode_on";
     public static final String IS_NETWORK_PROVIDER_ALLOWED = "settings get secure location_providers_allowed";
     public static final String IS_GPS_PROVIDER_ALLOWED = "settings get secure location_providers_allowed";
+    public static final String ENABLE_WIFI = "am start -n com.reversecoder.appium.settings/com.reversecoder.appium.settings.network.NetworkActivity -e wifi on";
+    public static final String DISABLE_WIFI = "am start -n com.reversecoder.appium.settings/com.reversecoder.appium.settings.network.NetworkActivity -e wifi off";
+    public static final String ENABLE_DATA = "am start -n com.reversecoder.appium.settings/com.reversecoder.appium.settings.network.NetworkActivity -e data on";
+    public static final String DISABLE_DATA = "am start -n com.reversecoder.appium.settings/com.reversecoder.appium.settings.network.NetworkActivity -e data off";
+    public static final String UNLOCK_DEVICE = "am start -n com.reversecoder.appium.settings/com.reversecoder.appium.settings.unlock.Unlock";
+    public static final String GRANT_LOCAL_PERMISSION = "pm grant com.reversecoder.appium.settings android.permission.CHANGE_CONFIGURATION";
+    public static final String LOCALE_LANGUAGE = "getprop |grep lang";
+    public static final String LOCALE_COUNTRY = "getprop |grep country";
 
     public static final String setBatteryStatus(BATTERY_STATUS batteryStatus){
         String bStatus = "dumpsys battery set status " + batteryStatus.getBatteryStatusValue();
@@ -76,5 +84,10 @@ public class ADBShellCommands {
             String serviceNameWithFullPackage) {
         String getSpecificService = "dumpsys activity services " + packageName + "/" + serviceNameWithFullPackage;
         return getSpecificService;
+    }
+
+    public static final String getLocaleChange(String language, String country) {
+        String changeLocale = "am broadcast -a 'AppiumSettings' --es LANG " + language + " --es COUNTRY " + country;
+        return changeLocale;
     }
 }
