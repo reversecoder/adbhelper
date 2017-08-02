@@ -14,6 +14,7 @@ import com.reversecoder.adbhelper.parsers.ShellOutputParsers;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.ConnectException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -59,7 +60,11 @@ public class ADBServiceImpl implements ADBService {
     public List<String> getConnectedDevicesUdid() throws Exception {
         ADBConnection adbConnection = createConnection();
         List<ADBDevice> adbDevices = adbConnection.getDevices();
-        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
+        List<String> udids = new ArrayList<String>();
+        for(int i = 0; i < adbDevices.size(); i++){
+            udids.add(adbDevices.get(i).getUdid());
+        }
+//        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
         adbConnection.close();
         return udids;
     }
@@ -68,7 +73,11 @@ public class ADBServiceImpl implements ADBService {
         String mUdid="";
         ADBConnection adbConnection = createConnection();
         List<ADBDevice> adbDevices = adbConnection.getDevices();
-        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
+        List<String> udids = new ArrayList<String>();
+        for(int i = 0; i < adbDevices.size(); i++){
+            udids.add(adbDevices.get(i).getUdid());
+        }
+//        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
         if(udids.size()>0){
             mUdid = udids.get(0);
         }
