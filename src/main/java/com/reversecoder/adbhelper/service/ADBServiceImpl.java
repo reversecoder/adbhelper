@@ -61,8 +61,8 @@ public class ADBServiceImpl implements ADBService {
         ADBConnection adbConnection = createConnection();
         List<ADBDevice> adbDevices = adbConnection.getDevices();
         List<String> udids = new ArrayList<String>();
-        for(int i = 0; i < adbDevices.size(); i++){
-            udids.add(adbDevices.get(i).getUdid());
+        for(ADBDevice adbDevice : adbDevices){
+           udids.add(adbDevice.getUdid());
         }
 //        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
         adbConnection.close();
@@ -74,8 +74,8 @@ public class ADBServiceImpl implements ADBService {
         ADBConnection adbConnection = createConnection();
         List<ADBDevice> adbDevices = adbConnection.getDevices();
         List<String> udids = new ArrayList<String>();
-        for(int i = 0; i < adbDevices.size(); i++){
-            udids.add(adbDevices.get(i).getUdid());
+        for(ADBDevice adbDevice : adbDevices){
+            udids.add(adbDevice.getUdid());
         }
 //        List<String> udids = adbDevices.stream().map(ADBDevice::getUdid).collect(Collectors.toList());
         if(udids.size()>0){
